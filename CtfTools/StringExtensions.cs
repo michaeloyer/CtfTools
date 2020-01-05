@@ -39,6 +39,12 @@ namespace CtfTools
         public static string RegexReplace(this string text, string pattern, string replacement, RegexOptions options) =>
             Regex.Replace(text, pattern, replacement, options);
 
+        public static string RegexRemove(this string text, string pattern) =>
+            RegexReplace(text, pattern, string.Empty, RegexOptions.None);
+
+        public static string RegexRemove(this string text, string pattern, RegexOptions options) =>
+            RegexReplace(text, pattern, string.Empty, options);
+
         public static IEnumerable<string> GetWords(this string text) =>
             RegexMatches(text, @"\S+");
 
