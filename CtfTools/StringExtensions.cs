@@ -43,14 +43,24 @@ namespace CtfTools
             RegexMatches(text, @"\S+");
 
         public static string Left(this string text, int length) =>
-            text.Length < length
+            length == 0 || length < -text.Length
+                ? string.Empty
+            : length > text.Length
                 ? text
-                : text.Substring(0, length);
+            : length < 0
+                ? text.Substring(0, length + text.Length)
+            :
+                text.Substring(0, length);
 
         public static string Right(this string text, int length) =>
-            text.Length < length
+            length == 0 || length < -text.Length
+                ? string.Empty
+            : length > text.Length
                 ? text
-                : text.Substring(text.Length - length);
+            : length < 0
+                ? text.Substring(length * -1)
+            :
+                text.Substring(text.Length - length);
 
         private static readonly Phonix.Soundex soundex = new Phonix.Soundex();
         public static string Soundex(this string text) => soundex.BuildKey(text);
