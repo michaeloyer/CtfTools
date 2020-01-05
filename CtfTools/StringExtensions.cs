@@ -39,5 +39,15 @@ namespace CtfTools
 
         public static IEnumerable<string> GetWords(this string text) =>
             RegexMatches(text, @"\S+");
+
+        public static string Left(this string text, int length) =>
+            text.Length < length
+                ? text
+                : text.Substring(0, length);
+
+        public static string Right(this string text, int length) =>
+            text.Length < length
+                ? text
+                : text.Substring(text.Length - length);
     }
 }
