@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Superpower;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,5 +55,11 @@ namespace CtfTools
         private static readonly Phonix.Soundex soundex = new Phonix.Soundex();
         public static string Soundex(this string text) => soundex.BuildKey(text);
         public static T FromJson<T>(this string text) => JsonConvert.DeserializeObject<T>(text);
+
+        public static T TextParse<TToken, T>(this string text, TextParser<T> parser) =>
+            parser.Parse(text);
+
+        public static T TokenParse<TToken, T>(this string text, Tokenizer<TToken> tokenizer, TokenListParser<TToken, T> tokenParser) =>
+            tokenParser.Parse(tokenizer.Tokenize(text));
     }
 }
