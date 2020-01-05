@@ -1,14 +1,43 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FileSystemDirectories\**" />
+    <EmbeddedResource Remove="FileSystemDirectories\**" />
+    <None Remove="FileSystemDirectories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="T4\.gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Phonix" Version="1.0.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="T4\Directories.tt">
+      <LastGenOutput>Directories.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="T4\Directories.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Directories.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

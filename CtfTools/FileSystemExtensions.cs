@@ -3,12 +3,12 @@ using System.Text;
 
 namespace CtfTools
 {
-    public static class FileSystem
+    public static class FileSystemExtensions
     {
-        public static string ReadFile(string path) =>
+        public static string ReadFile(this string path) =>
             ReadFile(path, Encoding.UTF8);
 
-        public static string ReadFile(string path, Encoding encoding) =>
+        public static string ReadFile(this string path, Encoding encoding) =>
             File.ReadAllText(path, encoding);
 
         public static void WriteFile(this string text, string path) =>
