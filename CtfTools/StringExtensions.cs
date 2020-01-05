@@ -49,5 +49,8 @@ namespace CtfTools
             text.Length < length
                 ? text
                 : text.Substring(text.Length - length);
+
+        private static readonly Phonix.Soundex soundex = new Phonix.Soundex();
+        public static string Soundex(this string text) => soundex.BuildKey(text);
     }
 }
