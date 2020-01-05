@@ -21,6 +21,7 @@
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
     <PackageReference Include="Superpower" Version="2.3.0" />
+    <PackageReference Include="TextCopy" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
