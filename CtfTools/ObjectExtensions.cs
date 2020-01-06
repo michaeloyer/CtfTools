@@ -6,9 +6,19 @@ namespace CtfTools
 {
     public static class ObjectExtensions
     {
-        public static void ConsoleWrite(this object obj) => Console.Write(obj);
-        public static void ConsoleWriteLine(this object obj) => Console.WriteLine(obj);
-        public static void ConsoleWriteProperties(this object obj, bool includePropertyNames = false)
+        public static T ConsoleWrite<T>(this T obj)
+        {
+            Console.Write(obj);
+            return obj;
+        }
+
+        public static T ConsoleWriteLine<T>(this T obj)
+        {
+            Console.WriteLine(obj);
+            return obj;
+        }
+
+        public static T ConsoleWriteProperties<T>(this T obj, bool includePropertyNames = false)
         {
             var previousColor = Console.ForegroundColor;
             var nameColor = ConsoleColor.Yellow;
@@ -29,6 +39,7 @@ namespace CtfTools
                 Console.Write("; ");
             }
             Console.WriteLine();
+            return obj;
         }
         public static string ToJson(this object obj, Formatting formatting = Formatting.Indented) =>
             JsonConvert.SerializeObject(obj, formatting);
